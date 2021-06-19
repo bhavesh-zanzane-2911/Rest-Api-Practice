@@ -18,7 +18,7 @@ import java.util.Optional;
 /**
  * @Author : Bhavesh Zanzane
  * Description : Rest API using Spring Boot an Spring Data JPA
- * */
+ */
 
 
 @RestController
@@ -31,39 +31,38 @@ public class StudentController {
     StudentJpaRepository studentJpaRepository;
 
     @GetMapping(path = "students/{rollNo}")
-    public Student getStudentByRollNo(@PathVariable int rollNo){
+    public Student getStudentByRollNo(@PathVariable int rollNo) {
         Optional<Student> byId = studentJpaRepository.findById(rollNo);
         boolean present = byId.isPresent();
         if (!present)
-            throw  new StudentNotFoundException("Student with RollNo "+ rollNo+" Not Found");
-        Student student = byId.get();
-        return student;
+            throw new StudentNotFoundException("Student with RollNo " + rollNo + " Not Found");
+        return byId.get();
     }
 
 
     @GetMapping(path = "students")
-    public List<Student> getAllStudents(){
+    public List<Student> getAllStudents() {
         return studentJpaRepository.findAll();
     }
 
     @DeleteMapping(path = "students/{rollNo}")
-    public void deleteById(@PathVariable int rollNo)  {
+    public void deleteById(@PathVariable int rollNo) {
         Optional<Student> byId = studentJpaRepository.findById(rollNo);
-        if(!byId.isPresent())
-            throw new StudentNotFoundException("User with Id "+rollNo+" Not found");
+        if (!byId.isPresent())
+            throw new StudentNotFoundException("User with Id " + rollNo + " Not found");
         studentJpaRepository.deleteById(rollNo);
 
     }
 
     @PostMapping("students")
-    public ResponseEntity<Object> addStudentDetails( @Valid @RequestBody Student student){
+    public ResponseEntity<Object> addStudentDetails(@Valid @RequestBody Student student) {
         studentJpaRepository.save(student);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{rollNo}").buildAndExpand(student.getRollNo()).toUri();
-    return ResponseEntity.created(uri).build();
+        return ResponseEntity.created(uri).build();
     }
 
     @PutMapping("students")
-    public void updateStudentDetails(@RequestBody Student student){
+    public void updateStudentDetails(@RequestBody Student student) {
         studentJpaRepository.save(student);
     }
 }
