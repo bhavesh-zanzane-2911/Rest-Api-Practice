@@ -17,7 +17,7 @@ public class Student {
     @Column(name = "ROLL_NO")
     private int rollNo;
     @ApiModelProperty(notes = "Size should be at least 2 characters")
-    @Size(min = 2,message = "Size should be at least 2 characters")
+    @Size(min = 2, message = "Size should be at least 2 characters")
     @Column(name = "NAME")
     private String name;
 

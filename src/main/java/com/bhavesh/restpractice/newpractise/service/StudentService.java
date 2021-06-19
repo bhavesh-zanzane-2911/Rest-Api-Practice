@@ -9,16 +9,17 @@ import java.util.List;
 
 @Component
 public class StudentService {
-    static List<Student> studentList=new ArrayList<>();
+    static List<Student> studentList = new ArrayList<>();
+
     static {
-        studentList.add(new Student(1,"Adesh","Pune"));
-        studentList.add(new Student(2,"Bhavesh","Baramati"));
-        studentList.add(new Student(3,"Pooja","Indapur"));
+        studentList.add(new Student(1, "Adesh", "Pune"));
+        studentList.add(new Student(2, "Bhavesh", "Baramati"));
+        studentList.add(new Student(3, "Pooja", "Indapur"));
     }
 
-    public Student findById(int rollNo){
-        for (Student student:studentList){
-            if (student.getRollNo()==rollNo){
+    public Student findById(int rollNo) {
+        for (Student student : studentList) {
+            if (student.getRollNo() == rollNo) {
                 return student;
             }
         }
@@ -26,24 +27,24 @@ public class StudentService {
         return null;
     }
 
-    public List<Student> findAllStudents(){
+    public List<Student> findAllStudents() {
         return studentList;
     }
 
-    public void deleteById(int id)  {
+    public void deleteById(int id) {
         Iterator<Student> iterator = studentList.iterator();
-        while (iterator.hasNext()){
+        while (iterator.hasNext()) {
             Student next = iterator.next();
-            if (next.getRollNo()==id){
+            if (next.getRollNo() == id) {
                 iterator.remove();
             }
         }
     }
 
-    public void updateStudentDetails(Student student){
+    public void updateStudentDetails(Student student) {
 
-        for (Student s:studentList){
-            if (s.getRollNo()==student.getRollNo()){
+        for (Student s : studentList) {
+            if (s.getRollNo() == student.getRollNo()) {
                 s.setCity(student.getCity());
                 s.setName(student.getName());
             }
@@ -51,7 +52,7 @@ public class StudentService {
 
     }
 
-    public void addStudent(Student student){
+    public void addStudent(Student student) {
         studentList.add(student);
     }
 

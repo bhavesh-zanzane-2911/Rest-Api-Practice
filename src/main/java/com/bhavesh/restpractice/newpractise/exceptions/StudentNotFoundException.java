@@ -9,6 +9,7 @@ public class StudentNotFoundException extends RuntimeException {
     public StudentNotFoundException(String s) {
         super(s);
     }
+
     public StudentNotFoundException(String s, Exception ex) {
         super(s, ex);
     }

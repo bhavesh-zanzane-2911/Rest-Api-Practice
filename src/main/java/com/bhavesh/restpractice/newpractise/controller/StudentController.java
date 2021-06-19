@@ -2,7 +2,6 @@ package com.bhavesh.restpractice.newpractise.controller;
 
 import com.bhavesh.restpractice.newpractise.exceptions.StudentNotFoundException;
 import com.bhavesh.restpractice.newpractise.model.Student;
-
 import com.bhavesh.restpractice.newpractise.repository.StudentJpaRepository;
 import com.bhavesh.restpractice.newpractise.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;

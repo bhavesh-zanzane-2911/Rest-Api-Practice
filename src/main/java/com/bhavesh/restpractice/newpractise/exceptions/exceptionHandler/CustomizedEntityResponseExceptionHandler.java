@@ -16,12 +16,12 @@ import java.util.Date;
 
 @RestController
 @ControllerAdvice
-public class CustomizedEntityResponseExceptionHandler  extends ResponseEntityExceptionHandler {
+public class CustomizedEntityResponseExceptionHandler extends ResponseEntityExceptionHandler {
 
 
     @ExceptionHandler(StudentNotFoundException.class)
-    public final ResponseEntity<Object> handleAllException(Exception ex, WebRequest request) throws Exception{
-        ExceptionResponse ex1= new ExceptionResponse(ex.getMessage(),new Date(), request.getDescription(false));
+    public final ResponseEntity<Object> handleAllException(Exception ex, WebRequest request) throws Exception {
+        ExceptionResponse ex1 = new ExceptionResponse(ex.getMessage(), new Date(), request.getDescription(false));
         return new ResponseEntity(ex1, HttpStatus.NOT_FOUND);
     }
 
@@ -29,8 +29,8 @@ public class CustomizedEntityResponseExceptionHandler  extends ResponseEntityExc
     @Override
     public ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
         String defaultMessage = ex.getBindingResult().getFieldError().getDefaultMessage();
-        ExceptionResponse ex2=new ExceptionResponse(defaultMessage,new Date(), request.getDescription(false));
-        HttpStatus statusResponse=HttpStatus.BAD_REQUEST;
-        return new ResponseEntity<>(ex2,statusResponse);
+        ExceptionResponse ex2 = new ExceptionResponse(defaultMessage, new Date(), request.getDescription(false));
+        HttpStatus statusResponse = HttpStatus.BAD_REQUEST;
+        return new ResponseEntity<>(ex2, statusResponse);
     }
 }

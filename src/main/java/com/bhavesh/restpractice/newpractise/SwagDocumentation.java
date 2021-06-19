@@ -5,23 +5,25 @@ import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.service.Contact;
-import springfox.documentation.service.VendorExtension;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 @Configuration
 @EnableSwagger2
 public class SwagDocumentation {
-    Contact contact=new Contact("Bhavesh","bhavesh.com","bhaveshzanzane@gmail.com");
+    Contact contact = new Contact("Bhavesh", "bhavesh.com", "bhaveshzanzane@gmail.com");
 
 
-    ApiInfo DEFAUL_API_INFO= new ApiInfo("BHAVESH_REST_API", "Passion", "0.0.1", "bhavesha.com", contact, "ApacheLicense", "License",new ArrayList<>());
+    ApiInfo DEFAUL_API_INFO = new ApiInfo("BHAVESH_REST_API", "Passion", "0.0.1", "bhavesha.com", contact, "ApacheLicense", "License", new ArrayList<>());
 
-    private static final Set<String> DEFAULT_PRODUCES= new HashSet<>(Arrays.asList("application/json","applicatin/xml"));
-    private static final Set<String> DEFAULT_CONSUMES= new HashSet<>(Arrays.asList("application/json","applicatin/xml"));
+    private static final Set<String> DEFAULT_PRODUCES = new HashSet<>(Arrays.asList("application/json", "applicatin/xml"));
+    private static final Set<String> DEFAULT_CONSUMES = new HashSet<>(Arrays.asList("application/json", "applicatin/xml"));
 
 
     @Bean
