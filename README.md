@@ -50,3 +50,21 @@ If student exists in table it will delete the student from database.
 
 Below URL give information about all Rest API's in this same project.
 http://localhost:8081/swagger-ui/
+
+
+As we are using embeded database 
+Under resources we have create a data.sql file as below:
+
+INSERT INTO STUDENT (ROLL_NO,CITY,NAME) VALUES(1,'Pune','Bhavesh');
+INSERT INTO STUDENT (ROLL_NO,CITY,NAME) VALUES(2,'Pune','Adesh');
+INSERT INTO STUDENT (ROLL_NO,CITY,NAME) VALUES(3,'Pune','Pooja');
+
+In application.properties we have below property configurations:
+
+server.port=8081
+spring.h2.console.enabled=true
+spring.datasource.url=jdbc:h2:mem:testdb
+spring.data.jpa.repositories.bootstrap-mode=default
+spring.jpa.show-sql=true
+spring.jpa.hibernate.ddl-auto=create
+spring.jpa.defer-datasource-initialization=true
