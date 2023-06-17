@@ -11,7 +11,7 @@
 	<groupId>com.bhavesh.restpractice</groupId>
 	<artifactId>newpractise</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>newpractise</name>
+	<name>docker-practice</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>1.8</java.version>
@@ -74,6 +74,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
+		<finalName>docker-practice</finalName>
 	</build>
 
 </project>

@@ -16,6 +16,14 @@ pipeline {
                         bat 'mvn test'
                     }
                 }
+                stage('Build docker image'){
+                            steps{
+                                script{
+                                    bat 'docker build -t bhaveshzanzane/docker-practice.jar .'
+                                }
+                            }
+                        }
+
 
 
    }
