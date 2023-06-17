@@ -13,7 +13,6 @@ pipeline {
 
         stage('Run Tests'){
                     steps{
-                        checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/bhavesh-zanzane-2911/Rest-Api-Practice']]])
                         bat 'mvn test'
                     }
                 }
