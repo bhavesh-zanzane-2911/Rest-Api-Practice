@@ -15,14 +15,26 @@ pipeline {
                     steps{
                         bat 'mvn test'
                     }
-                }
-                stage('Build docker image'){
+        }
+
+        stage('Build docker image'){
                             steps{
                                 script{
                                     bat 'docker build -t bhaveshzanzane/docker-practice.jar .'
                                 }
-                            }
-                        }
+                 }
+         }
+         stage('Push image to Hub'){
+                     steps{
+                         script{
+                            withCredentials([string(credentialsId: 'DockerHubPwd', variable: 'DockeHubPwd')]) {
+                            bat 'docker login -u bhaveshzanzane -p ${DockerHubPwd}'
+
+         }
+                            bat 'docker push bhaveshzanzane/docker-practice.jar'
+                         }
+                     }
+                 }
 
 
 
