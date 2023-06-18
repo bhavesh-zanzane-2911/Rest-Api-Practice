@@ -28,7 +28,7 @@ pipeline {
                      steps{
                          script{
                             withCredentials([string(credentialsId: 'DockerHubNewPassword', variable: 'DockerHubNewPassword')]) {
-                            bat 'docker login -u bhaveshzanzane -p ${DockerHubNewPassword}'
+                            bat 'docker login -u bhaveshzanzane -p bhaveshzanzane'
 
          }
                             bat 'docker push bhaveshzanzane/docker-practice.jar'
