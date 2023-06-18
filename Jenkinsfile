@@ -20,7 +20,7 @@ pipeline {
         stage('Build docker image'){
                             steps{
                                 script{
-                                    bat 'docker build -t bhaveshzanzane/docker-practice.jar .'
+                                    bat 'docker build -t bhaveshzanzane/docker-practice .'
                                 }
                  }
          }
@@ -31,7 +31,7 @@ pipeline {
                             bat 'docker login -u bhaveshzanzane -p bhaveshzanzane'
 
          }
-                            bat 'docker push bhaveshzanzane/docker-practice.jar'
+                            bat 'docker push bhaveshzanzane/docker-practice'
                          }
                      }
                  }
