@@ -27,8 +27,8 @@ pipeline {
          stage('Push image to Hub'){
                      steps{
                          script{
-                            withCredentials([string(credentialsId: 'DockerHubPwd', variable: 'DockeHubPwd')]) {
-                            bat 'docker login -u bhaveshzanzane -p ${DockerHubPwd}'
+                            withCredentials([string(credentialsId: 'DokcerHubPwdNew', variable: 'DokcerHubPwdNew')]) {
+                            bat 'docker login -u bhaveshzanzane -p ${DokcerHubPwdNew}'
 
          }
                             bat 'docker push bhaveshzanzane/docker-practice.jar'
