@@ -28,7 +28,7 @@ pipeline {
         stage('SonarQube analysis') {
 		                steps{
 		                   script{
-                                 withSonarQubeEnv(credentialsId: 'sqa_81731a61455247441517510e064cc185b1daf778', installationName: 'http://localhost:9000/') { 
+                                 withSonarQubeEnv(installationName: 'SonarQube') { 
                                  bat 'mvn sonar:sonar'
                                  }
 		                   }
