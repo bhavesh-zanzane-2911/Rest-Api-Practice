@@ -24,6 +24,12 @@ pipeline {
                                 }
                  }
          }
+
+        stage('SonarQube analysis') {
+         withSonarQubeEnv(credentialsId: 'sqa_81731a61455247441517510e064cc185b1daf778', installationName: 'http://localhost:9000/') { 
+         bat 'mvn sonar:sonar'
+        }
+        }
          stage('Push image to Hub'){
                      steps{
                          script{
