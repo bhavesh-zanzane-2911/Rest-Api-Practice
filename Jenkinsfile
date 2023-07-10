@@ -16,6 +16,16 @@ pipeline {
                         bat 'mvn test'
                     }
         }
+		
+		stage('SonarQube analysis') {
+		                steps{
+		                   script{
+                                 withSonarQubeEnv(installationName: 'SonarQube') { 
+                                 bat 'mvn sonar:sonar'
+                                 }
+		                   }
+						}
+        }
 
         stage('Build docker image'){
                             steps{
@@ -25,15 +35,7 @@ pipeline {
                  }
          }
 
-        stage('SonarQube analysis') {
-		                steps{
-		                   script{
-                                 withSonarQubeEnv(installationName: 'SonarQube') { 
-                                 bat 'mvn sonar:sonar'
-                                 }
-		                   }
-						}
-        }
+        
          stage('Push image to Hub'){
                      steps{
                          script{
