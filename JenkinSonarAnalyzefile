@@ -10,12 +10,6 @@ pipeline {
                 bat 'mvn clean install -DskipTests'
             }
         }
-
-        stage('Run Tests'){
-                    steps{
-                        bat 'mvn test'
-                    }
-        }
 		
 		stage('SonarQube analysis') {
 		                steps{
@@ -26,29 +20,6 @@ pipeline {
 		                   }
 						}
         }
-
-        stage('Build docker image'){
-                            steps{
-                                script{
-                                    bat 'docker build -t bhaveshzanzane/docker-practice .'
-                                }
-                 }
-         }
-
-        
-         stage('Push image to Hub'){
-                     steps{
-                         script{
-                            withCredentials([string(credentialsId: 'DockerPassword', variable: 'DockerPassword')]) {
-                            bat 'docker login -u bhaveshzanzane -p bhaveshzanzane'
-
-         }
-                            bat 'docker push bhaveshzanzane/docker-practice'
-                         }
-                     }
-                 }
-
-
 
    }
 }
