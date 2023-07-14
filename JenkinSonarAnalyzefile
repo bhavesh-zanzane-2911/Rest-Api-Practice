@@ -12,14 +12,13 @@ pipeline {
         }
 		
 		stage('SonarQube analysis') {
-		                steps{
-		                   script{
-                                 withSonarQubeEnv(installationName: 'SonarQube') { 
-                                 bat 'mvn sonar:sonar'
-                                 }
-		                   }
-						}
+		    steps{
+		        script{
+                    withSonarQubeEnv(installationName: 'SonarQube') { 
+                        bat 'mvn sonar:sonar'
+                    }
+		        }
+	        }
         }
-
-   }
+	}
 }
