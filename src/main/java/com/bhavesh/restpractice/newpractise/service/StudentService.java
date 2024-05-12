@@ -1,13 +1,13 @@
 package com.bhavesh.restpractice.newpractise.service;
 
 import com.bhavesh.restpractice.newpractise.model.Student;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-@Component
+@Service
 public class StudentService {
     static List<Student> studentList = new ArrayList<>();
 
