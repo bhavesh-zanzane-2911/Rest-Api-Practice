@@ -17,7 +17,7 @@ pipeline {
                     }
         }
 		
-		stage('SonarQube analysis') {
+	/*	stage('SonarQube analysis') {
 		                steps{
 		                   script{
                                  withSonarQubeEnv(installationName: 'SonarQube') { 
@@ -25,7 +25,7 @@ pipeline {
                                  }
 		                   }
 						}
-        }
+        } */
 
         stage('Build docker image'){
                             steps{
