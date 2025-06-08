@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kubernates-practice-deployment
+  labels:
+    app: kubernates-practice
+spec:
+  replicas: 2  
+  template:
+    metadata:
+      labels:
+        app: kubernates-practice
+    spec:
+      containers:
+        - name: kubernates-practice
+          image: bhaveshzanzane/docker-practice:latest
+          ports:
+            - containerPort: 8080         
+  selector:
+    matchLabels:
+      app: kubernates-practice
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kubernates-practice-service
+  labels:
+    app: kubernates-practice
+spec:
+  type: NodePort
+  ports:
+    - port: 8080
+      targetPort: 8080  #  Make sure this matches the containerPort
+      nodePort: 30080
+  selector:
+    app: kubernates-practice
+    
