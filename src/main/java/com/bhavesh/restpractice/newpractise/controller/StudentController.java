@@ -1,18 +1,12 @@
 package com.bhavesh.restpractice.newpractise.controller;
 
-import com.bhavesh.restpractice.newpractise.exceptions.StudentNotFoundException;
 import com.bhavesh.restpractice.newpractise.model.Student;
-import com.bhavesh.restpractice.newpractise.repository.StudentJpaRepository;
 import com.bhavesh.restpractice.newpractise.service.StudentService;
-import org.springframework.beans.factory.annotation.Autowired;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import javax.validation.Valid;
-import java.net.URI;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * @Author : Bhavesh Zanzane
@@ -20,48 +14,40 @@ import java.util.Optional;
  */
 
 
-@RestController
+@RestController()
+@RequestMapping("/students")
 public class StudentController {
 
-    @Autowired
-    StudentService studentService;
 
-    @Autowired
-    StudentJpaRepository studentJpaRepository;
+    private final StudentService studentService;
 
-    @GetMapping(path = "students/{rollNo}")
+    public StudentController(StudentService studentService) {
+        this.studentService = studentService;
+    }
+
+    @GetMapping(path = "/{rollNo}")
     public Student getStudentByRollNo(@PathVariable int rollNo) {
-        Optional<Student> byId = studentJpaRepository.findById(rollNo);
-        boolean present = byId.isPresent();
-        if (!present)
-            throw new StudentNotFoundException("Student with RollNo " + rollNo + " Not Found");
-        return byId.get();
+        return studentService.getStudentByRollNo(rollNo);
     }
 
 
-    @GetMapping(path = "students")
+    @GetMapping()
     public List<Student> getAllStudents() {
-        return studentJpaRepository.findAll();
+        return studentService.getAllStudents();
     }
 
-    @DeleteMapping(path = "students/{rollNo}")
-    public void deleteById(@PathVariable int rollNo) {
-        Optional<Student> byId = studentJpaRepository.findById(rollNo);
-        if (!byId.isPresent())
-            throw new StudentNotFoundException("User with Id " + rollNo + " Not found");
-        studentJpaRepository.deleteById(rollNo);
-
+    @DeleteMapping(path = "/{rollNo}")
+    public void deleteStudent(@PathVariable int rollNo) {
+        studentService.deleteStudentByRollNo(rollNo);
     }
 
-    @PostMapping("students")
+    @PostMapping()
     public ResponseEntity<Object> addStudentDetails(@Valid @RequestBody Student student) {
-        studentJpaRepository.save(student);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{rollNo}").buildAndExpand(student.getRollNo()).toUri();
-        return ResponseEntity.created(uri).build();
+        return studentService.saveStudent(student);
     }
 
-    @PutMapping("students")
+    @PutMapping()
     public void updateStudentDetails(@RequestBody Student student) {
-        studentJpaRepository.save(student);
+        studentService.updateStudent(student);
     }
 }

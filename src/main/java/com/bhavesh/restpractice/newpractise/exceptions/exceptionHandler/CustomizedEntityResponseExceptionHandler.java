@@ -26,7 +26,6 @@ public class CustomizedEntityResponseExceptionHandler extends ResponseEntityExce
     }
 
 
-    @Override
     public ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
         String defaultMessage = ex.getBindingResult().getFieldError().getDefaultMessage();
         ExceptionResponse ex2 = new ExceptionResponse(defaultMessage, new Date(), request.getDescription(false));
